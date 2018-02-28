@@ -1,5 +1,6 @@
 package com.exsun.dao;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -8,7 +9,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
+
 import com.exsun.bean.Message;
+import com.exsun.db.DbAccess;
 
 /**
  * 和Message表相关的操作
@@ -16,7 +20,42 @@ import com.exsun.bean.Message;
  * @author jinshouji
  *
  */
-public class MessageDao {
+public class MessageDao {	
+	/**
+	 * 通过Mybatis得到查询的结果
+	 * @param command
+	 * @param description
+	 * @return
+	 */
+	public List<Message> queryMessage(String command, String description)
+	{
+		DbAccess dbAccess=new DbAccess();
+		SqlSession sqlSession=null;
+		List<Message> messageList = new ArrayList<Message>();
+		try {
+			//设置SqlSession
+			sqlSession= dbAccess.getSqlSession();
+			
+			//设置Sql的查询条件
+			Message condition=new Message();
+			condition.setCommand(command);
+			condition.setDescription(description);
+			
+			messageList=sqlSession.selectList("Message.queryMessageList",condition);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally
+		{
+			if(sqlSession!=null) sqlSession.close();
+		}
+		
+		return messageList;
+	}
+
+	
 	/**
 	 * 根据查询条件查询列表
 	 * 
@@ -24,7 +63,7 @@ public class MessageDao {
 	 * @param description
 	 * @throws ClassNotFoundException
 	 */
-	public List<Message> queryMessage(String command, String description) {
+	public List<Message> queryMessageByJdbc(String command, String description) {
 		List<Message> messageList = new ArrayList<Message>();
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -67,4 +106,5 @@ public class MessageDao {
 		}
 		return messageList;
 	}
+
 }
