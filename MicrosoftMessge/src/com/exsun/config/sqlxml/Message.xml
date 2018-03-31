@@ -33,4 +33,17 @@
 		</if>
 	</select>
 
+	<!-- 删除单条数据 -->
+	<delete id="deleteOne" parameterType="int">
+		delete from message where ID=#{_parameter}
+	</delete>
+	
+	<!-- 删除多条数据 -->
+	<delete id="deleteBatch" parameterType="java.util.List">
+		delete from message where ID in (
+		<foreach collection="list" item="item" separator=",">
+			#{item}
+		</foreach>	
+		)
+	</delete>
 </mapper>

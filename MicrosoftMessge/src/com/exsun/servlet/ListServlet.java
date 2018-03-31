@@ -29,7 +29,7 @@ public class ListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		//设置编码
-		req.setCharacterEncoding("UTF-8");
+		//req.setCharacterEncoding("UTF-8");
 		//接受页面的传值
 		String command=req.getParameter("command");
 		String description=req.getParameter("description");

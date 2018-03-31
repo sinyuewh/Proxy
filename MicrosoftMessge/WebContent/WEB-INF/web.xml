@@ -11,6 +11,17 @@
    		<welcome-file>List.action</welcome-file>
    </welcome-file-list>
    
+   <!-- 过滤器的配置 -->
+   <filter>
+   		<filter-name>EncodeFilter</filter-name>
+   		<filter-class>com.exsun.filter.EncodeFilter</filter-class>
+   </filter>
+   <filter-mapping>
+   		<filter-name>EncodeFilter</filter-name>
+   		<url-pattern>/*</url-pattern>
+   </filter-mapping>
+   
+   <!--Servlet的配置 -->
    <servlet>
       <servlet-name>ListServLet</servlet-name>
       <servlet-class>
@@ -24,4 +35,48 @@
       <url-pattern>/List.action</url-pattern>
    </servlet-mapping>
    
+   <!-- 删除单条数据 -->
+   <servlet>
+   	  <servlet-name>DeleteOneData</servlet-name>
+      <servlet-class>com.exsun.servlet.DeleteOneServlet</servlet-class>
+   </servlet>
+   
+   <servlet-mapping>
+   		<servlet-name>DeleteOneData</servlet-name>
+   		<url-pattern>/DeleteOne.action</url-pattern>
+   </servlet-mapping>
+   
+   
+   <!-- 删除多条数据 -->
+   <servlet>
+   	  <servlet-name>DeleteBatchDataServlet</servlet-name>
+      <servlet-class>com.exsun.servlet.DeleteBatchDataServlet</servlet-class>
+   </servlet>
+   
+   <servlet-mapping>
+   		<servlet-name>DeleteBatchDataServlet</servlet-name>
+   		<url-pattern>/DeleteBatchData.action</url-pattern>
+   </servlet-mapping>
+     
+   <!-- 初始化页面 -->
+   <servlet>
+   	  <servlet-name>InitTalkServlet</servlet-name>
+      <servlet-class>com.exsun.servlet.InitTalkServlet</servlet-class>
+   </servlet>
+   
+   <servlet-mapping>
+   		<servlet-name>InitTalkServlet</servlet-name>
+   		<url-pattern>/InitTalkServlet.action</url-pattern>
+   </servlet-mapping>
+   
+   <!-- 自动回复的Servlet -->
+   <servlet>
+   	  <servlet-name>AutoReplyServlet</servlet-name>
+      <servlet-class>com.exsun.servlet.AutoReplyServlet</servlet-class>
+   </servlet>
+   
+   <servlet-mapping>
+   		<servlet-name>AutoReplyServlet</servlet-name>
+   		<url-pattern>/AutoReplyServlet.action</url-pattern>
+   </servlet-mapping>
 </web-app>

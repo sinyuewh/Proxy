@@ -55,7 +55,57 @@ public class MessageDao {
 		return messageList;
 	}
 
+	/**
+	 * 删除单条数据
+	 * @param id
+	 */
+	public void deleteOne(int id)
+	{
+		DbAccess dbAccess=new DbAccess();
+		SqlSession sqlSession=null;
+		try {
+			//设置SqlSession
+			sqlSession= dbAccess.getSqlSession();				
+			sqlSession.delete("Message.deleteOne",id);
+			
+			//提交事务
+			sqlSession.commit();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally
+		{
+			if(sqlSession!=null) sqlSession.close();
+		}
+	}
 	
+	/**
+	 * 删除多条数据
+	 * @param ids
+	 */
+	public void deleteBatch(List<Integer> ids)
+	{
+		DbAccess dbAccess=new DbAccess();
+		SqlSession sqlSession=null;
+		try {
+			//设置SqlSession
+			sqlSession= dbAccess.getSqlSession();				
+			sqlSession.delete("Message.deleteBatch",ids);
+			
+			//提交事务
+			sqlSession.commit();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally
+		{
+			if(sqlSession!=null) sqlSession.close();
+		}
+	}
 	/**
 	 * 根据查询条件查询列表
 	 * 

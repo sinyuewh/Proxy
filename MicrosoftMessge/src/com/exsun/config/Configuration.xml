@@ -41,6 +41,8 @@
 	<!-- 导入SQL的用户定义配置文件 -->
 	<mappers>
 		<mapper resource="com/exsun/config/sqlxml/Message.xml" />
+		<mapper resource="com/exsun/config/sqlxml/Command.xml" />
+		<mapper resource="com/exsun/config/sqlxml/CommandContent.xml" />
 	</mappers>
 
 </configuration>
